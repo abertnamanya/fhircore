@@ -109,5 +109,5 @@
     <string name="extraction_in_progress">Memproses data kuesioner…</string>
     <string name="loading_questionnaire">Memuat kuesioner…</string>
     <string name="clear_all">Hapus Semua</string>
-
+    <string name="invalid_pin_msg">You have provided an invalid pin, Try again</string>
 </resources>

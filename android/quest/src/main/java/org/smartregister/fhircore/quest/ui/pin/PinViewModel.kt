@@ -150,4 +150,13 @@ constructor(
       onPinVerified(validPin)
     }
   }
+
+  fun secondaryPinValidation(enteredPin: CharArray, callback: (Boolean) -> Unit) {
+    val storedPinHash = secureSharedPreference.retrieveSessionPin()
+    val salt = secureSharedPreference.retrievePinSalt()
+    val generatedHash = enteredPin.toPasswordHash(Base64.getDecoder().decode(salt))
+    val validPin = generatedHash == storedPinHash
+    if (validPin) clearPasswordInMemory(enteredPin)
+    callback.invoke(validPin)
+  }
 }

@@ -21,8 +21,10 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Resources
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -231,5 +233,26 @@ object AlertDialogue {
     }
     dateDialog.show()
     return dateDialog
+  }
+
+  fun showInputDialog(context: Context, title: String, positiveButtonLabel: String, negativeButtonLabel: String, onInputProvided: (String) -> Unit) {
+    val inputEditText = EditText(context)
+    inputEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+    val dialog = AlertDialog.Builder(context)
+      .setTitle(title)
+      .setView(inputEditText)
+      .setPositiveButton(positiveButtonLabel) { dialogInterface: DialogInterface, i: Int ->
+        val userInput = inputEditText.text.toString()
+        if(userInput.isNotBlank())
+          onInputProvided.invoke(userInput)
+          dialogInterface.dismiss()
+      }
+      .setNegativeButton(negativeButtonLabel) { dialogInterface: DialogInterface, i: Int ->
+        dialogInterface.dismiss()
+      }
+      .create()
+
+    dialog.show()
   }
 }

@@ -22,6 +22,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
@@ -40,6 +41,7 @@ import org.hl7.fhir.r4.model.ResourceType
 import org.smartregister.fhircore.engine.configuration.QuestionnaireConfig
 import org.smartregister.fhircore.engine.domain.model.ActionParameter
 import org.smartregister.fhircore.engine.domain.model.ActionParameterType
+import org.smartregister.fhircore.engine.domain.model.SnackBarMessageConfig
 import org.smartregister.fhircore.engine.domain.model.isEditable
 import org.smartregister.fhircore.engine.domain.model.isReadOnly
 import org.smartregister.fhircore.engine.ui.base.AlertDialogue
@@ -51,6 +53,7 @@ import org.smartregister.fhircore.engine.util.extension.parcelableArrayList
 import org.smartregister.fhircore.engine.util.extension.showToast
 import org.smartregister.fhircore.quest.R
 import org.smartregister.fhircore.quest.databinding.QuestionnaireActivityBinding
+import org.smartregister.fhircore.quest.ui.pin.PinViewModel
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -62,6 +65,7 @@ class QuestionnaireActivity : BaseMultiLanguageActivity() {
   private lateinit var viewBinding: QuestionnaireActivityBinding
   private var questionnaire: Questionnaire? = null
   private var alertDialog: AlertDialog? = null
+  private val pinViewModel by viewModels<PinViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -286,15 +290,33 @@ class QuestionnaireActivity : BaseMultiLanguageActivity() {
           org.smartregister.fhircore.engine.R.string.questionnaire_alert_back_pressed_button_title,
       )
     } else {
-      AlertDialogue.showConfirmAlert(
-        context = this,
-        message =
+      if (questionnaireConfig.title.equals("Elicitation Interview")) {
+        AlertDialogue.showInputDialog(
+          context = this,
+          title = "Please enter your pin" ,
+          positiveButtonLabel = "OK",
+          negativeButtonLabel = "Cancel"
+        ) { input ->
+          val pinCharArray = input.toCharArray()
+          var pinIsValid = false
+          pinViewModel.secondaryPinValidation(pinCharArray) { valid: Boolean -> pinIsValid = valid }
+          if (!pinIsValid) {
+            showToast(getString(R.string.invalid_pin_msg), Toast.LENGTH_LONG)
+            return@showInputDialog
+          }
+          finish()
+        }
+      } else {
+        AlertDialogue.showConfirmAlert(
+          context = this,
+          message =
           org.smartregister.fhircore.engine.R.string.questionnaire_alert_back_pressed_message,
-        title = org.smartregister.fhircore.engine.R.string.questionnaire_alert_back_pressed_title,
-        confirmButtonListener = { finish() },
-        confirmButtonText =
+          title = org.smartregister.fhircore.engine.R.string.questionnaire_alert_back_pressed_title,
+          confirmButtonListener = { finish() },
+          confirmButtonText =
           org.smartregister.fhircore.engine.R.string.questionnaire_alert_back_pressed_button_title,
-      )
+        )
+      }
     }
   }
 

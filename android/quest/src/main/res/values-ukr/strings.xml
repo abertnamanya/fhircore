@@ -1,17 +1,17 @@
 <resources>
-    <string name="back_to_clients">Back to client list</string>
-    <string name="test_results">Test Results</string>
+    <string name="back_to_clients">Назад до списку клієнтів</string>
+    <string name="test_results">Результати тестування</string>
 
-    <string name="edit_patient_info">Edit Info</string>
+    <string name="edit_patient_info">Редагувати інформацію</string>
 
-    <string name="menu_clients">Clients</string>
-    <string name="menu_settings">Settings</string>
-    <string name="cannot_find_parent_questionnaire">Cannot find the parent Questionnaire!</string>
+    <string name="menu_clients">Клієнти</string>
+    <string name="menu_settings">Налаштування</string>
+    <string name="cannot_find_parent_questionnaire">Не можу знайти батьківську анкету!</string>
 
-    <string name="loading_forms">Loading forms ...</string>
-    <string name="loading_responses">Loading responses ...</string>
-    <string name="no_test_results_found">No test results found</string>
-    <string name="patient_test_results">TEST RESULTS</string>
+    <string name="loading_forms">Завантаження форм...</string>
+    <string name="loading_responses">Завантаження відповідей...</string>
+    <string name="no_test_results_found">Результатів тесту не знайдено</string>
+    <string name="patient_test_results">РЕЗУЛЬТАТИ ТЕСТУВАННЯ</string>
     <string name="last_test"> Last Test - %1$s</string>
     <string name="sample_distance" translatable="false">2.4 km</string>
     <string name="hash_sign" translatable="false">#</string>
@@ -91,25 +91,23 @@
     <string name="questionnaire_response_name" translatable="false">%1$s (%2$s)</string>
     <string name="due_on">Due on %1$s</string>
 
-    <string name="geo_widget_fragment_destination" translatable="false">GeoWidget Fragment Destination</string>
+    <string name="geo_widget_fragment_destination" translatable="false">Призначення фрагмента GeoWidget</string>
 
-    <string name="structuremap_failed">Failed to extract resources for %1$s</string>
-    <string name="structure_map_missing_message">Missing StructureMap for Questionnaire , QuestionnaireResponse saved</string>
+    <string name="structuremap_failed">Не вдалося отримати ресурси для %1$s</string>
+    <string name="structure_map_missing_message">Відсутня StructureMap для Questionnaire , QuestionnaireResponse збережено</string>
     <string name="structure_success">Successfully extracted resources for %1$s</string>
-    <string name="reassigned_managing_entity">Managing entity reassigned successfully</string>
+    <string name="reassigned_managing_entity">Керуючу особу успішно перепризначено</string>
     <string name="error_fetching_user_details">Failed to fetch user details</string>
-    <string name="questionnaire_not_found">Questionnaire not found.  Sync all questionnaires to fix</string>
+    <string name="questionnaire_not_found">Анкета не знайдена. Щоб виправити, синхронізуйте всі анкети</string>
     <string name="no_visits">No visits</string>
     <string name="questionnaire_response_invalid">Questionnaire response invalid</string>
     <string name="app_version_tag_url" translatable="false">https://smartregister.org/app-version</string>
-    <string name="application_version" translatable="false">Application Version</string>
+    <string name="application_version" translatable="false">Версія програми</string>
     <string name="missing_subject_type">Missing subject type on questionnaire. Provide Questionnaire.subjectType to resolve.</string>
     <string name="missing_questionnaire_config">QuestionnaireConfig is required but missing.</string>
-    <string name="error_populating_questionnaire">Error populating some questionnaire fields. Invalid QuestionnaireResponse.</string>
-    <string name="extraction_in_progress">Processing questionnaire data…</string>
-    <string name="loading_questionnaire">Loading questionnaire…</string>
-    <string name="clear_all">Clear All</string>
-    <string name="copy_text_success_message">Link %1$s copied successfully</string>
-    <string name="invalid_pin_msg">You have provided an invalid pin, Try again</string>
-
+    <string name="error_populating_questionnaire">Помилка заповнення деяких полів анкети. Недійсна відповідь анкети.</string>
+    <string name="extraction_in_progress">Обробка даних анкети…</string>
+    <string name="loading_questionnaire">Завантаження анкети…</string>
+    <string name="clear_all">Очистити все</string>
+    <string name="invalid_pin_msg">Ви вказали недійсний PIN-код. Повторіть спробу</string>
 </resources>

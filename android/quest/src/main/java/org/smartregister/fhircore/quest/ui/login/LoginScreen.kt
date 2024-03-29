@@ -180,6 +180,23 @@ fun LoginPage(
       Spacer(modifier = modifier.height(20.dp))
       Column(modifier = modifier.padding(4.dp), verticalArrangement = Arrangement.Center) {
         // TODO Add configurable logo. Images to be downloaded from server
+        if (
+          applicationConfiguration.appTitle.isNotEmpty() &&
+          applicationConfiguration.loginConfig.showAppTitle
+        ) {
+          Text(
+            color = if (applicationConfiguration.useDarkTheme) Color.White else LoginDarkColor,
+            text = applicationConfiguration.appTitle,
+            fontWeight = FontWeight.Bold,
+            fontSize = 32.sp,
+            modifier =
+            modifier
+              .wrapContentWidth()
+              .padding(vertical = 8.dp)
+              .align(Alignment.CenterHorizontally)
+              .testTag(APP_NAME_TEXT_TAG),
+          )
+        }
         if (applicationConfiguration.loginConfig.showLogo) {
           Image(
             painter = painterResource(R.drawable.ic_app_logo),
@@ -190,23 +207,6 @@ fun LoginPage(
                 .requiredHeight(applicationConfiguration.loginConfig.logoHeight.dp)
                 .requiredWidth(applicationConfiguration.loginConfig.logoWidth.dp)
                 .testTag(APP_LOGO_TAG),
-          )
-        }
-        if (
-          applicationConfiguration.appTitle.isNotEmpty() &&
-            applicationConfiguration.loginConfig.showAppTitle
-        ) {
-          Text(
-            color = if (applicationConfiguration.useDarkTheme) Color.White else LoginDarkColor,
-            text = applicationConfiguration.appTitle,
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            modifier =
-              modifier
-                .wrapContentWidth()
-                .padding(vertical = 8.dp)
-                .align(Alignment.CenterHorizontally)
-                .testTag(APP_NAME_TEXT_TAG),
           )
         }
         Spacer(modifier = modifier.height(40.dp))
